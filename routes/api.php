@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // })->middleware('auth:sanctum');
 
+
 Route::apiResource('posts', PostController::class);
 
 // AUTHENTIFICATION
@@ -23,4 +24,8 @@ Route::post('logout', [UserController::class, 'logout'])->middleware('auth:sanct
 // MAKING COMMENTS
 
 
+Route::middleware('auth:sanctum')->group(function () {
+    Route::post('posts/{post}/comments', [CommentController::class, 'store']);
+    Route::delete('comments/{comment}', [CommentController::class, 'destroy']);
+});
 

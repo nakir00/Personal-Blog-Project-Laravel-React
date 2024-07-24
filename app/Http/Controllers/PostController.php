@@ -25,7 +25,7 @@ class PostController extends Controller implements HasMiddleware
     public function index()
     {
         // showing all the posts
-        return Post::with('user')->latest()->get();
+        return Post::with(['user', 'comments'])->latest()->get();
     }
 
 
