@@ -7,6 +7,7 @@ use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controllers\HasMiddleware;
 use Illuminate\Routing\Controllers\Middleware;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 
 class PostController extends Controller implements HasMiddleware
@@ -27,6 +28,7 @@ class PostController extends Controller implements HasMiddleware
         // showing all the posts
         return Post::with(['user', 'comments'])->latest()->get();
     }
+
 
 
     /**

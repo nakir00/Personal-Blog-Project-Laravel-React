@@ -56,10 +56,18 @@ class User extends Authenticatable
         return $this->hasMany(Comment::class);
     }
 
-    // public function friends() {
-    //     return $this->belongsToMany(User::class, 'friends', 'user_id', 'friend_id')
-    //         ->withPivot('status')
-    //         ->withTimestamps();
-    // }
+    public function friends()
+    {
+        return $this->belongsToMany(User::class, 'friends', 'user_id', 'friend_id')
+                    ->withPivot('status')
+                    ->withTimestamps();
+    }
+
+    public function friendRequests()
+    {
+        return $this->belongsToMany(User::class, 'friends', 'friend_id', 'user_id')
+                    ->withPivot('status')
+                    ->withTimestamps();
+    }
 
 }

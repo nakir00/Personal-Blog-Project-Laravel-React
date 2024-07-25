@@ -51,31 +51,6 @@ class CommentController extends Controller implements HasMiddleware
         }
     }
 
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    //  public function destroy(Comment $comment)
-    // {
-    //     // Vérifier si l'utilisateur est authentifié
-    //     $user = Auth::user();
-    //     if (!$user) {
-    //         return response()->json(['message' => 'User not authenticated'], 401);
-    //     }
-
-    //     // Vérifier si l'utilisateur est l'auteur du commentaire ou l'auteur du post
-    //     if ($user->id !== $comment->user_id && $user->id !== $comment->post->user_id) {
-    //         return response()->json(['message' => 'Unauthorized'], 403);
-    //     }
-
-    //     try {
-    //         $comment->delete();
-    //         return response()->json(null, 204);
-    //     } catch (\Exception $e) {
-    //         return response()->json(['message' => 'Internal Server Error', 'error' => $e->getMessage()], 500);
-    //     }
-    // }
-
     public function destroy(Comment $comment)
     {
         // Vérifier si l'utilisateur est authentifié
