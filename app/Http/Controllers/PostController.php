@@ -9,6 +9,7 @@ use Illuminate\Routing\Controllers\HasMiddleware;
 use Illuminate\Routing\Controllers\Middleware;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Log;
 
 class PostController extends Controller implements HasMiddleware
 {
@@ -36,15 +37,25 @@ class PostController extends Controller implements HasMiddleware
      */
     public function store(Request $request)
     {
-        $data = $request->validate([
+
+        if($request->hasFile('image')){
+            $file = $request->file('photo');
+            Log::alert('image added');
+            return ['image'=>'image successfully added'];
+        }
+       /*  $data = $request->validate([
             'title' => 'required|max:255',
-            'content' => 'required'
-        ]);
+            'content' => 'required',
+            'cannot_comment'=> 'boolean',
+            'image' => 'image',
+        ]); */
 
-        $post = $request->user()->posts()->create($data);
 
-        return ['post' => $post,
-    'user' => $post->user];
+       // $post = $request->user()->posts()->create($data);
+
+        /* return ['post' => $post,
+    'user' => $post->user]; */
+    return response(['message'=>'message bon controller']);
     }
 
 
